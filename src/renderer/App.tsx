@@ -14,25 +14,14 @@ import ReactFlow, {
   Position,
 } from 'react-flow-renderer';
 
+import smalltalk from 'smalltalk';
+
 import Buttons from './Buttons';
+import ConnectionLine from './ConnectionLine';
 
 import './App.css';
 
-const initialElements: Elements = [
-  {
-    id: '1',
-    data: { label: 'Node 1' },
-    position: { x: 100, y: 100 },
-    type: 'special',
-  },
-  {
-    id: '2',
-    data: { label: 'Node 2' },
-    position: { x: 100, y: 200 },
-    type: 'special',
-  },
-  { id: 'e1-2', source: '1', target: '2' },
-];
+const initialElements: Elements = [];
 
 const customNodeStyles = {
   background: '#aaa',
@@ -83,8 +72,17 @@ const GraphMaker = () => {
   const [elements, setElements] = useState<Elements>(initialElements);
   const onElementsRemove = (elementsToRemove: Elements) =>
     setElements((els) => removeElements(elementsToRemove, els));
-  const onConnect = (params: Connection | Edge) =>
-    setElements((els) => addEdge(params, els));
+  const onConnect = (params: Connection | Edge) => {
+    smalltalk
+      .prompt('', 'Enter edge value', '')
+      // eslint-disable-next-line promise/always-return
+      .then((value: string) => {
+        setElements((els) =>
+          addEdge({ ...params, animated: true, label: value }, els)
+        );
+      })
+      .catch(() => {});
+  };
   const onEdgeUpdate = (oldEdge, newConnection) =>
     setElements((els) => updateEdge(oldEdge, newConnection, els));
 
@@ -98,6 +96,7 @@ const GraphMaker = () => {
         onEdgeUpdate={onEdgeUpdate}
         style={{ height: '100vh' }}
         nodeTypes={nodeTypes}
+        connectionLineComponent={ConnectionLine}
       >
         <Controls />
         <Buttons rfInstance={rfInstance} setElements={setElements} />
