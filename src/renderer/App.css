@@ -3,9 +3,37 @@ body {
   font-family: sans-serif;
 }
 
-button {
-  background: #fff;
-  border: 1px solid #000;
+button,
+.smalltalk button {
+  background: #aaa;
+  color: #333;
+  border: 2px solid #333;
+  padding: 10px;
+  width: 100px;
+  border-radius: 4px;
+  box-shadow: none;
+  text-shadow: none;
+  font-size: small !important;
+}
+
+.smalltalk input {
+  background: #aaa;
+  color: #333;
+  border: 2px solid #333;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: none;
+  text-shadow: none;
+  font-size: small !important;
+}
+
+.smalltalk button:enabled:focus, .smalltalk input:enabled:focus {
+  border-color: #333;
+}
+
+/*.smalltalk button[data-name="js-cancel"],*/
+.smalltalk div[data-name="js-close"] {
+  display: none;
 }
 
 .save__controls {
@@ -26,4 +54,10 @@ button {
 
 .react-flow__controls-interactive {
   display: none;
+}
+
+.smalltalk .page {
+  box-shadow: none;
+  border: 2px solid #333;
+  border-radius: 4px;
 }

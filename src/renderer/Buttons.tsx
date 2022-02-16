@@ -78,6 +78,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
           data: {
             label: value,
           },
+          type: 'special',
           position: {
             x: Math.random() * window.innerWidth - 100,
             y: Math.random() * window.innerHeight,
