@@ -147,3 +147,28 @@ ipc.on('run-save-dialog', function (event, arg) {
     fs.writeFileSync(filePath, arg, 'utf-8');
   });
 });
+
+ipc.on('run-open-dialog', function (event, arg) {
+  const options = {
+    title: 'Open file',
+    defaultPath: '',
+    buttonLabel: 'Open',
+
+    filters: [
+      { name: 'json', extensions: ['json'] },
+      { name: 'All Files', extensions: ['*'] },
+    ],
+  };
+
+  // eslint-disable-next-line promise/catch-or-return
+  dialog.showOpenDialog(options).then(response => {
+    fs.readFile(response.filePaths[0], 'utf-8', (err, data) => {
+      if (err) {
+        alert(`An error ocurred reading the file :${err.message}`);
+        return;
+      }
+
+      mainWindow.webContents.send('restore-flow', data);
+    });
+  });
+});

@@ -13,6 +13,7 @@ import {
 import $ from 'jquery';
 
 import smalltalk from 'smalltalk';
+import localforage from 'localforage';
 
 const electron = require('electron');
 // eslint-disable-next-line prefer-destructuring
@@ -44,23 +45,29 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   }, [rfInstance]);
 
   const onRestore = useCallback(() => {
-    const restoreFlow = async () => {
-      $.getJSON(
-        'http://localhost:3290/get/b5faba27846c3bcd3164b16700d93e76',
-        function (data) {
-          const flow: FlowExportObject | null = data;
+    const restoreFlow = () => {
+      try {
+        const flow: FlowExportObject | null = JSON.parse($('#flowdata').html());
 
-          if (flow) {
-            const [x = 0, y = 0] = flow.position;
-            setElements(flow.elements || []);
-            transform({ x, y, zoom: flow.zoom || 0 });
-          }
+        if (flow) {
+          const [x = 0, y = 0] = flow.position;
+          setElements(flow.elements || []);
+          transform({ x, y, zoom: flow.zoom || 0 });
         }
-      );
+      } catch (e) {}
     };
 
     restoreFlow();
   }, [setElements, transform]);
+
+  const onOpen = () => {
+    ipc.send('run-open-dialog');
+  };
+
+  ipc.on('restore-flow', function (event, arg) {
+    $('#flowdata').html(arg);
+    onRestore();
+  });
 
   const onAdd = useCallback(() => {
     smalltalk.prompt('Question', 'Enter node value', '').then((value: any) => {
@@ -78,12 +85,12 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
     });
   }, [setElements]);
 
-  onRestore();
-
   return (
     <div className="save__controls">
       <button onClick={onSave}>save</button>
+      <button onClick={onOpen}>open</button>
       <button onClick={onAdd}>add node</button>
+      <div id="flowdata" style={{ display: 'none' }} />
     </div>
   );
 };
