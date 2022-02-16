@@ -13,7 +13,6 @@ import {
 import $ from 'jquery';
 
 import smalltalk from 'smalltalk';
-import localforage from 'localforage';
 
 const electron = require('electron');
 // eslint-disable-next-line prefer-destructuring
@@ -47,7 +46,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   const onRestore = useCallback(() => {
     const restoreFlow = () => {
       try {
-        const flow: FlowExportObject | null = JSON.parse($('#flowdata').html());
+        const flow: FlowExportObject | null = JSON.parse($('#flowdata').html()); // Don't question it, I already lost my sanity with IPC
 
         if (flow) {
           const [x = 0, y = 0] = flow.position;
@@ -65,24 +64,28 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   };
 
   ipc.on('restore-flow', function (event, arg) {
+    // This somehow executes onRestore() multiple times, I hope this won't cause any problems
     $('#flowdata').html(arg);
     onRestore();
   });
 
   const onAdd = useCallback(() => {
-    smalltalk.prompt('Question', 'Enter node value', '').then((value: any) => {
-      const newNode = {
-        id: `random_node-${getNodeId()}`,
-        data: {
-          label: value,
-        },
-        position: {
-          x: Math.random() * window.innerWidth - 100,
-          y: Math.random() * window.innerHeight,
-        },
-      };
-      setElements((els) => els.concat(newNode));
-    });
+    smalltalk
+      .prompt('', 'Enter node value', '')
+      .then((value: any) => {
+        const newNode = {
+          id: `random_node-${getNodeId()}`,
+          data: {
+            label: value,
+          },
+          position: {
+            x: Math.random() * window.innerWidth - 100,
+            y: Math.random() * window.innerHeight,
+          },
+        };
+        setElements((els) => els.concat(newNode));
+      })
+      .catch(() => {}); // Why does this library require such a hacky thing?
   }, [setElements]);
 
   return (

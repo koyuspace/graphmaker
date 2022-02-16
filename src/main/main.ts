@@ -132,9 +132,7 @@ app
 
 ipc.on('run-save-dialog', function (event, arg) {
   const options = {
-    title: 'Save file',
     defaultPath: 'graph.json',
-    buttonLabel: 'Save',
 
     filters: [
       { name: 'json', extensions: ['json'] },
@@ -150,9 +148,7 @@ ipc.on('run-save-dialog', function (event, arg) {
 
 ipc.on('run-open-dialog', function (event, arg) {
   const options = {
-    title: 'Open file',
     defaultPath: '',
-    buttonLabel: 'Open',
 
     filters: [
       { name: 'json', extensions: ['json'] },
