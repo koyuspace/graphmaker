@@ -10,15 +10,13 @@ import {
   Elements,
   FlowExportObject,
 } from 'react-flow-renderer';
-import localforage from 'localforage';
-import $, { data } from 'jquery';
+import $ from 'jquery';
 
-const smalltalk = require('smalltalk');
+import smalltalk from 'smalltalk';
 
-localforage.config({
-  name: 'react-flow',
-  storeName: 'flows',
-});
+const electron = require('electron');
+// eslint-disable-next-line prefer-destructuring
+const ipc = electron.ipcRenderer;
 
 const getNodeId = () => `randomnode_${+new Date()}`;
 
@@ -41,10 +39,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   const onSave = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
-      $.post('http://localhost:3290/set', {
-        dat: JSON.stringify(flow),
-        token: 'b5faba27846c3bcd3164b16700d93e76',
-      });
+      ipc.send('run-save-dialog', JSON.stringify(flow));
     }
   }, [rfInstance]);
 
@@ -68,7 +63,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   }, [setElements, transform]);
 
   const onAdd = useCallback(() => {
-    smalltalk.prompt('Question', 'Enter node value', '').then((value) => {
+    smalltalk.prompt('Question', 'Enter node value', '').then((value: any) => {
       const newNode = {
         id: `random_node-${getNodeId()}`,
         data: {

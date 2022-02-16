@@ -9,11 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell } from 'electron';
+import { app, BrowserWindow, shell, dialog } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
+
+const fs = require('fs');
+const ipc = require('electron').ipcMain;
 
 export default class AppUpdater {
   constructor() {
@@ -69,9 +71,12 @@ const createWindow = async () => {
     height: 728,
     icon: getAssetPath('icon.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   });
+
+  mainWindow.setMenu(null);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
@@ -89,9 +94,6 @@ const createWindow = async () => {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
 
   // Open urls in the user's browser
   mainWindow.webContents.setWindowOpenHandler((edata) => {
@@ -127,3 +129,21 @@ app
     });
   })
   .catch(console.log);
+
+ipc.on('run-save-dialog', function (event, arg) {
+  const options = {
+    title: 'Save file',
+    defaultPath: 'graph.json',
+    buttonLabel: 'Save',
+
+    filters: [
+      { name: 'json', extensions: ['json'] },
+      { name: 'All Files', extensions: ['*'] },
+    ],
+  };
+
+  // eslint-disable-next-line promise/catch-or-return
+  dialog.showSaveDialog(null, options).then(({ filePath }) => {
+    fs.writeFileSync(filePath, arg, 'utf-8');
+  });
+});
