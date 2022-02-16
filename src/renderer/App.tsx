@@ -39,7 +39,7 @@ const customNodeStyles = {
   color: '#333',
   border: '2px solid #333',
   padding: 10,
-  borderRadius: '4px'
+  borderRadius: '4px',
 };
 
 const CustomNodeComponent = ({ data }) => {
