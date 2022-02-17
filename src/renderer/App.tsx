@@ -76,10 +76,37 @@ const GraphMaker = () => {
     smalltalk
       .prompt('', 'Enter edge value', '')
       // eslint-disable-next-line promise/always-return
-      .then((value: string) => {
-        setElements((els) =>
-          addEdge({ ...params, animated: true, label: value }, els)
-        );
+      .then((val1: string) => {
+        // eslint-disable-next-line promise/no-nesting
+        smalltalk
+          .prompt('', 'Enter edge color', '')
+          // eslint-disable-next-line promise/always-return
+          .then((val2: string) => {
+            setElements((els) =>
+              addEdge(
+                {
+                  ...params,
+                  animated: true,
+                  label: val1,
+                  labelStyle: {
+                    fontSize: '14pt',
+                    fontWeight: 100,
+                    fontFamily: 'Segoe UI',
+                  },
+                  labelBgPadding: [8, 4],
+                  labelBgBorderRadius: 4,
+                  labelBgStyle: {
+                    fill: '#FFCC00',
+                    color: '#fff',
+                    fillOpacity: 0.7,
+                  },
+                  style: { stroke: val2 },
+                },
+                els
+              )
+            );
+          })
+          .catch(() => {});
       })
       .catch(() => {});
   };
