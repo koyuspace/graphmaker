@@ -38,26 +38,37 @@ const CustomNodeComponent = ({ data }) => {
         type="target"
         position={Position.Left}
         id="a"
-        style={{ top: '30%', borderRadius: 0 }}
+        style={{ top: '30%', borderRadius: 0, height: '22px', width: '22px' }}
       />
       <Handle
         type="target"
         position={Position.Left}
         id="b"
-        style={{ top: '70%', borderRadius: 0 }}
+        style={{ top: '70%', borderRadius: 0, height: '22px', width: '22px' }}
       />
-      <div>{data.label}</div>
+      <div
+        style={{
+          width: '100px',
+          height: '42px',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          fontSize: '24pt',
+          verticalAlign: 'middle',
+        }}
+      >
+        {data.label}
+      </div>
       <Handle
         type="source"
         position={Position.Right}
         id="c"
-        style={{ top: '30%', borderRadius: 0 }}
+        style={{ top: '30%', borderRadius: 0, height: '22px', width: '22px' }}
       />
       <Handle
         type="source"
         position={Position.Right}
         id="c"
-        style={{ top: '70%', borderRadius: 0 }}
+        style={{ top: '70%', borderRadius: 0, height: '22px', width: '22px' }}
       />
     </div>
   );
@@ -89,8 +100,8 @@ const GraphMaker = () => {
                   animated: true,
                   label: val1,
                   labelStyle: {
-                    fontSize: '14pt',
-                    fontWeight: 100,
+                    fontSize: '24pt',
+                    fontWeight: 'bold',
                     fontFamily: 'Segoe UI',
                   },
                   labelBgPadding: [8, 4],
@@ -100,7 +111,7 @@ const GraphMaker = () => {
                     color: '#fff',
                     fillOpacity: 0.7,
                   },
-                  style: { stroke: val2 },
+                  style: { stroke: val2, strokeWidth: 4 },
                 },
                 els
               )
