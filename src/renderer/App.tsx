@@ -38,13 +38,26 @@ const CustomNodeComponent = ({ data }) => {
         type="target"
         position={Position.Left}
         id="a"
-        style={{ top: '30%', borderRadius: 0, height: '22px', width: '22px' }}
+        style={{
+          top: '30%',
+          borderRadius: 0,
+          height: '22px',
+          width: '22px',
+          backgroundColor: '#027abf',
+        }}
       />
       <Handle
         type="target"
         position={Position.Left}
         id="b"
-        style={{ top: '70%', borderRadius: 0, height: '22px', width: '22px' }}
+        style={{
+          top: '70%',
+          borderRadius: 0,
+          height: '22px',
+          width: '22px',
+          color: 'blue',
+          backgroundColor: '#027abf',
+        }}
       />
       <div
         style={{
@@ -62,13 +75,25 @@ const CustomNodeComponent = ({ data }) => {
         type="source"
         position={Position.Right}
         id="c"
-        style={{ top: '30%', borderRadius: 0, height: '22px', width: '22px' }}
+        style={{
+          top: '30%',
+          borderRadius: 0,
+          height: '22px',
+          width: '22px',
+          backgroundColor: '#ffe300',
+        }}
       />
       <Handle
         type="source"
         position={Position.Right}
         id="c"
-        style={{ top: '70%', borderRadius: 0, height: '22px', width: '22px' }}
+        style={{
+          top: '70%',
+          borderRadius: 0,
+          height: '22px',
+          width: '22px',
+          backgroundColor: '#ffe300',
+        }}
       />
     </div>
   );
