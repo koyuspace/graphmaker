@@ -60,7 +60,7 @@
     ],
     "publish": {
       "provider": "github",
-      "owner": "graphmaker",
+      "owner": "koyuspace",
       "repo": "graphmaker"
     }
   },
@@ -69,7 +69,7 @@
     "url": "git+https://github.com/koyuspace/graphmaker.git"
   },
   "author": {
-    "name": "GraphMaker Maintainers",
+    "name": "koyu.space",
     "email": "support@koyu.space",
     "url": "https://koyu.space"
   },
