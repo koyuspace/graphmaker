@@ -18,7 +18,7 @@ button,
   margin-top: 8px;
 }
 
-.smalltalk input {
+.smalltalk input[type='text'] {
   background: #aaa;
   color: #333;
   border: 2px solid #333;
@@ -29,6 +29,13 @@ button,
   font-size: 18pt !important;
   font-weight: bold;
   margin-top: 8px;
+}
+
+input[type='color'] {
+  width: 48px;
+  display: block;
+  margin-top: 8px;
+  margin: 0 auto;
 }
 
 .smalltalk button:enabled:focus,

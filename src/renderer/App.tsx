@@ -67,6 +67,7 @@ const CustomNodeComponent = ({ data }) => {
           fontWeight: 'bold',
           fontSize: '24pt',
           verticalAlign: 'middle',
+          fontFamily: 'Arial',
         }}
       >
         {data.label}
@@ -115,7 +116,7 @@ const GraphMaker = () => {
       .then((val1: string) => {
         // eslint-disable-next-line promise/no-nesting
         smalltalk
-          .prompt('', 'Enter edge color', '')
+          .prompt('', 'Enter edge color', '', { type: 'color' })
           // eslint-disable-next-line promise/always-return
           .then((val2: string) => {
             setElements((els) =>
