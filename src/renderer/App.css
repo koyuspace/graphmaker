@@ -38,6 +38,10 @@ input[type='color'] {
   margin: 0 auto;
 }
 
+.js-input-shapes {
+  margin-top: 18px;
+}
+
 .smalltalk button:enabled:focus,
 .smalltalk input:enabled:focus {
   border-color: #333;

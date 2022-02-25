@@ -111,7 +111,7 @@ const GraphMaker = () => {
     setElements((els) => removeElements(elementsToRemove, els));
   const onConnect = (params: Connection | Edge) => {
     smalltalk
-      .prompt('', 'Enter edge value', '')
+      .prompt('', 'Enter edge value', '', { type: 'shapes' })
       // eslint-disable-next-line promise/always-return
       .then((val1: string) => {
         // eslint-disable-next-line promise/no-nesting
