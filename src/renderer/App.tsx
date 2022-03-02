@@ -146,7 +146,7 @@ const GraphMaker = () => {
                   labelStyle: {
                     fontSize: '24pt',
                     fontWeight: 'bold',
-                    fontFamily: 'Segoe UI',
+                    fontFamily: 'Arial',
                     fill: convertShapes(val1).color,
                   },
                   labelBgPadding: [8, 4],
