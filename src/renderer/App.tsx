@@ -109,6 +109,24 @@ const GraphMaker = () => {
   const [elements, setElements] = useState<Elements>(initialElements);
   const onElementsRemove = (elementsToRemove: Elements) =>
     setElements((els) => removeElements(elementsToRemove, els));
+  const convertShapes = (shape) => {
+    if (shape === 'x') {
+      return { text: 'X', color: '#0000ff' };
+      // eslint-disable-next-line no-else-return
+    } else if (shape === 'l') {
+      return { text: 'L', color: '#ff00ff' };
+    } else if (shape === 'y') {
+      return { text: 'Y', color: '#ffff00' };
+    } else if (shape === 'triangle') {
+      return { text: '▲', color: '#8000ff' };
+    } else if (shape === 'square') {
+      return { text: '◼', color: '#00ff00' };
+    } else if (shape === 'circle') {
+      return { text: '●', color: '#ff0000' };
+    } else {
+      return { text: '', color: '#fff' };
+    }
+  };
   const onConnect = (params: Connection | Edge) => {
     smalltalk
       .prompt('', 'Enter edge value', '', { type: 'shapes' })
@@ -124,18 +142,19 @@ const GraphMaker = () => {
                 {
                   ...params,
                   animated: true,
-                  label: val1,
+                  label: convertShapes(val1).text,
                   labelStyle: {
                     fontSize: '24pt',
                     fontWeight: 'bold',
                     fontFamily: 'Segoe UI',
+                    fill: convertShapes(val1).color,
                   },
                   labelBgPadding: [8, 4],
                   labelBgBorderRadius: 4,
                   labelBgStyle: {
-                    fill: '#FFCC00',
+                    fill: '#fff',
                     color: '#fff',
-                    fillOpacity: 0.7,
+                    fillOpacity: 1,
                   },
                   style: { stroke: val2, strokeWidth: 4 },
                 },

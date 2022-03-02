@@ -7992,7 +7992,7 @@ slice-ansi@^5.0.0:
 
 "smalltalk@https://github.com/koyuspace/smalltalk":
   version "4.0.7"
-  resolved "https://github.com/koyuspace/smalltalk#1b7240fd438a22a898ab1d3143bcda170f7fcaff"
+  resolved "https://github.com/koyuspace/smalltalk#fca9e75cfd106b759559ad1535023bbde064f00a"
   dependencies:
     "@cloudcmd/create-element" "^2.0.0"
     currify "^4.0.0"
