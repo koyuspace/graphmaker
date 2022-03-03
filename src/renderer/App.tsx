@@ -20,6 +20,7 @@ import Buttons from './Buttons';
 import ConnectionLine from './ConnectionLine';
 
 import './App.css';
+import { strings } from './Locales';
 
 const initialElements: Elements = [];
 
@@ -129,12 +130,18 @@ const GraphMaker = () => {
   };
   const onConnect = (params: Connection | Edge) => {
     smalltalk
-      .prompt('', 'Enter edge value', '', { type: 'shapes' })
+      .prompt('', strings.edgeValueDialog, '', {
+        type: 'shapes',
+        buttons: { ok: strings.next, cancel: strings.abort },
+      })
       // eslint-disable-next-line promise/always-return
       .then((val1: string) => {
         // eslint-disable-next-line promise/no-nesting
         smalltalk
-          .prompt('', 'Enter edge color', '', { type: 'color' })
+          .prompt('', strings.edgeColorDialog, '', {
+            type: 'color',
+            buttons: { ok: strings.ok, cancel: strings.abort },
+          })
           // eslint-disable-next-line promise/always-return
           .then((val2: string) => {
             setElements((els) =>

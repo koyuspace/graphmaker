@@ -13,6 +13,7 @@ import {
 import $ from 'jquery';
 
 import smalltalk from 'smalltalk';
+import { strings } from './Locales';
 
 const electron = require('electron');
 // eslint-disable-next-line prefer-destructuring
@@ -71,7 +72,12 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
 
   const onAdd = useCallback(() => {
     smalltalk
-      .prompt('', 'Enter node value', '')
+      .prompt('', strings.nodeValue, '', {
+        buttons: {
+          ok: strings.ok,
+          cancel: strings.cancel,
+        },
+      })
       .then((value: any) => {
         const newNode = {
           id: `random_node-${getNodeId()}`,
@@ -91,10 +97,10 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
 
   return (
     <div className="save__controls">
-      <button onClick={onSave}>save</button>
-      <button onClick={onOpen}>open</button>
-      <button onClick={window.print}>print</button>
-      <button onClick={onAdd}>add node</button>
+      <button onClick={onSave}>{strings.save}</button>
+      <button onClick={onOpen}>{strings.open}</button>
+      <button onClick={window.print}>{strings.print}</button>
+      <button onClick={onAdd}>{strings.addNode}</button>
       <div id="flowdata" style={{ display: 'none' }} />
     </div>
   );
