@@ -197,10 +197,15 @@ const GraphMaker = () => {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<GraphMaker />} />
-      </Routes>
-    </Router>
+    <div>
+      <header id="titlebar">
+        <div id="drag-region" />
+      </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<GraphMaker />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }

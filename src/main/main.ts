@@ -9,21 +9,13 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, dialog } from 'electron';
+import { app, BrowserWindow, shell, dialog, nativeTheme } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { resolveHtmlPath } from './util';
 
 const fs = require('fs');
 const ipc = require('electron').ipcMain;
-
-export default class AppUpdater {
-  constructor() {
-    log.transports.file.level = 'info';
-    autoUpdater.logger = log;
-    autoUpdater.checkForUpdatesAndNotify();
-  }
-}
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -74,7 +66,21 @@ const createWindow = async () => {
       nodeIntegration: true,
       contextIsolation: false,
     },
+    frame: false,
+    titleBarStyle: 'hidden',
+    titleBarOverlay: {
+      color: nativeTheme.shouldUseDarkColors ? '#333' : '#fff',
+      symbolColor: nativeTheme.shouldUseDarkColors ? '#fff' : '#333',
+    },
   });
+
+  if (process.platform !== 'win32') {
+    mainWindow.webContents.insertCSS('#titlebar{display:none;}');
+  } else {
+    mainWindow.webContents.insertCSS(
+      'body{height: calc(100% - 32px);margin-top: 32px;}'
+    );
+  }
 
   mainWindow.setMenu(null);
 
@@ -100,10 +106,6 @@ const createWindow = async () => {
     shell.openExternal(edata.url);
     return { action: 'deny' };
   });
-
-  // Remove this if your app does not use auto updates
-  // eslint-disable-next-line
-  new AppUpdater();
 };
 
 /**
