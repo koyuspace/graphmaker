@@ -3,11 +3,22 @@ body {
   font-family: sans-serif;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #333;
+  }
+  .smalltalk .page {
+    background: #333;
+    color: #fff;
+    border: 1px solid #eee !important;
+  }
+}
+
 button,
 .smalltalk button {
   background: #aaa;
   color: #333;
-  border: 2px solid #333;
+  border: 0;
   padding: 10px;
   width: 200px;
   border-radius: 4px;
@@ -21,7 +32,7 @@ button,
 .smalltalk input[type='text'] {
   background: #aaa;
   color: #333;
-  border: 2px solid #333;
+  border: 0;
   padding: 10px;
   border-radius: 4px;
   box-shadow: none;
@@ -74,8 +85,8 @@ input[type='color'] {
 
 .smalltalk .page {
   box-shadow: none;
-  border: 2px solid #333;
   border-radius: 4px;
+  border: 1px solid #333;
 }
 
 @media print {
@@ -83,4 +94,12 @@ input[type='color'] {
   .save__controls {
     display: none;
   }
+  body {
+    background: transparent !important;
+    color: #333 !important;
+  }
+}
+
+.js-input-shapes label {
+  background: transparent !important;
 }
