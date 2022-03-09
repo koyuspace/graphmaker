@@ -65,23 +65,8 @@ const createWindow = async () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      devTools: false,
-    },
-    frame: process.platform !== 'win32',
-    titleBarStyle: process.platform === 'win32' ? 'hidden' : 'default',
-    titleBarOverlay: {
-      color: nativeTheme.shouldUseDarkColors ? '#000' : '#fff',
-      symbolColor: nativeTheme.shouldUseDarkColors ? '#fff' : '#000',
     },
   });
-
-  if (process.platform !== 'win32') {
-    mainWindow.webContents.insertCSS('#titlebar{display:none;}');
-  } else {
-    mainWindow.webContents.insertCSS(
-      'body{height: calc(100% - 32px);margin-top: 32px;}'
-    );
-  }
 
   mainWindow.setMenu(null);
 
