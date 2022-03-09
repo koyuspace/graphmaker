@@ -67,8 +67,8 @@ const createWindow = async () => {
       contextIsolation: false,
       devTools: false,
     },
-    frame: false,
-    titleBarStyle: 'hidden',
+    frame: process.platform !== 'win32',
+    titleBarStyle: process.platform === 'win32' ? 'hidden' : 'default',
     titleBarOverlay: {
       color: nativeTheme.shouldUseDarkColors ? '#000' : '#fff',
       symbolColor: nativeTheme.shouldUseDarkColors ? '#fff' : '#000',
