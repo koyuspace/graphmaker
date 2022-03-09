@@ -65,12 +65,13 @@ const createWindow = async () => {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
+      devTools: false,
     },
     frame: false,
     titleBarStyle: 'hidden',
     titleBarOverlay: {
-      color: nativeTheme.shouldUseDarkColors ? '#333' : '#fff',
-      symbolColor: nativeTheme.shouldUseDarkColors ? '#fff' : '#333',
+      color: nativeTheme.shouldUseDarkColors ? '#000' : '#fff',
+      symbolColor: nativeTheme.shouldUseDarkColors ? '#fff' : '#000',
     },
   });
 
