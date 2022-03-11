@@ -15,6 +15,7 @@ export const strings = new LocalizedStrings({
     print: 'Print',
     addNode: 'Add node',
     nodeValue: 'Node value',
+    nodeShape: 'Node color',
   },
   de: {
     ok: 'Ok',
@@ -29,5 +30,6 @@ export const strings = new LocalizedStrings({
     print: 'Drucken',
     addNode: 'Neues Objekt',
     nodeValue: 'Text für das Objekt',
+    nodeShape: 'Farbe für das Objekt',
   },
 });

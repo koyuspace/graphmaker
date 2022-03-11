@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/require-default-props */
@@ -70,27 +71,61 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
     onRestore();
   });
 
+  const convertShapes = (shape) => {
+    if (shape === 'x') {
+      return { text: 'X', color: '#0000ff' };
+      // eslint-disable-next-line no-else-return
+    } else if (shape === 'l') {
+      return { text: 'L', color: '#ff00ff' };
+    } else if (shape === 'y') {
+      return { text: 'Y', color: '#ffff00' };
+    } else if (shape === 'triangle') {
+      return { text: '▲', color: '#8000ff' };
+    } else if (shape === 'square') {
+      return { text: '◼', color: '#00ff00' };
+    } else if (shape === 'circle') {
+      return { text: '●', color: '#ff0000' };
+    } else {
+      return { text: '', color: '#fff' };
+    }
+  };
+
   const onAdd = useCallback(() => {
     smalltalk
       .prompt('', strings.nodeValue, '', {
         buttons: {
-          ok: strings.ok,
+          ok: strings.next,
           cancel: strings.cancel,
         },
       })
-      .then((value: any) => {
-        const newNode = {
-          id: `random_node-${getNodeId()}`,
-          data: {
-            label: value,
-          },
-          type: 'special',
-          position: {
-            x: Math.random() * window.innerWidth - 100,
-            y: Math.random() * window.innerHeight,
-          },
-        };
-        setElements((els) => els.concat(newNode));
+      .then((val1: any) => {
+        smalltalk
+          .prompt('', strings.nodeShape, '', {
+            type: 'shapes',
+            buttons: { ok: strings.ok, cancel: strings.abort },
+          })
+          // eslint-disable-next-line promise/always-return
+          .then((val2: string) => {
+            const newNode = {
+              id: `random_node-${getNodeId()}`,
+              data: {
+                label: val1,
+                styles: {
+                  background: convertShapes(val2).color,
+                  color: '#333',
+                  border: '2px solid #333',
+                  padding: 10,
+                  borderRadius: '4px',
+                },
+              },
+              type: 'special',
+              position: {
+                x: Math.random() * window.innerWidth - 100,
+                y: Math.random() * window.innerHeight,
+              },
+            };
+            setElements((els) => els.concat(newNode));
+          });
       })
       .catch(() => {}); // Why does this library require such a hacky thing?
   }, [setElements]);

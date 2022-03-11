@@ -26,17 +26,9 @@ import { strings } from './Locales';
 
 const initialElements: Elements = [];
 
-const customNodeStyles = {
-  background: '#aaa',
-  color: '#333',
-  border: '2px solid #333',
-  padding: 10,
-  borderRadius: '4px',
-};
-
 const CustomNodeComponent = ({ data }) => {
   return (
-    <div style={customNodeStyles}>
+    <div className="node" style={data.styles}>
       <Handle
         type="target"
         position={Position.Left}
