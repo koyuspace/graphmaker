@@ -1,3 +1,4 @@
+/* eslint-disable promise/no-nesting */
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import ReactFlow, {
@@ -18,6 +19,8 @@ import smalltalk from 'smalltalk';
 
 import Buttons from './Buttons';
 import ConnectionLine from './ConnectionLine';
+
+import { PathFindingEdge } from '@tisoap/react-flow-smart-edge';
 
 import './App.css';
 import { strings } from './Locales';
@@ -41,7 +44,7 @@ const CustomNodeComponent = ({ data }) => {
         id="a"
         style={{
           top: '30%',
-          borderRadius: 0,
+          borderRadius: '50%',
           height: '22px',
           width: '22px',
           backgroundColor: '#027abf',
@@ -53,7 +56,7 @@ const CustomNodeComponent = ({ data }) => {
         id="b"
         style={{
           top: '70%',
-          borderRadius: 0,
+          borderRadius: '50%',
           height: '22px',
           width: '22px',
           color: 'blue',
@@ -88,7 +91,7 @@ const CustomNodeComponent = ({ data }) => {
       <Handle
         type="source"
         position={Position.Right}
-        id="c"
+        id="d"
         style={{
           top: '70%',
           borderRadius: 0,
@@ -136,22 +139,22 @@ const GraphMaker = () => {
       })
       // eslint-disable-next-line promise/always-return
       .then((val1: string) => {
-        // eslint-disable-next-line promise/no-nesting
+        // eslint-disable-next-line promise/catch-or-return
         smalltalk
-          .prompt('', strings.edgeColorDialog, '', {
-            type: 'color',
+          .prompt('', strings.edgeLabelDialog, '', {
+            type: 'text',
             buttons: { ok: strings.ok, cancel: strings.abort },
           })
           // eslint-disable-next-line promise/always-return
-          .then((val2: string) => {
+          .then((val3: string) => {
             setElements((els) =>
               addEdge(
                 {
                   ...params,
                   animated: true,
-                  label: convertShapes(val1).text,
+                  label: `${convertShapes(val1).text} ${val3}`,
                   labelStyle: {
-                    fontSize: '24pt',
+                    fontSize: '18pt',
                     fontWeight: 'bold',
                     fontFamily: 'Arial',
                     fill: convertShapes(val1).color,
@@ -163,7 +166,8 @@ const GraphMaker = () => {
                     color: '#fff',
                     fillOpacity: 1,
                   },
-                  style: { stroke: val2, strokeWidth: 4 },
+                  type: 'smart',
+                  style: { stroke: convertShapes(val1).color, strokeWidth: 4 },
                 },
                 els
               )
@@ -187,6 +191,7 @@ const GraphMaker = () => {
         style={{ height: '100vh' }}
         nodeTypes={nodeTypes}
         connectionLineComponent={ConnectionLine}
+        smart={PathFindingEdge}
       >
         <Controls />
         <Buttons rfInstance={rfInstance} setElements={setElements} />
