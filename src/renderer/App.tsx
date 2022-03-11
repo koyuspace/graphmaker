@@ -17,10 +17,9 @@ import ReactFlow, {
 
 import smalltalk from 'smalltalk';
 
+import { SmartEdge } from '@tisoap/react-flow-smart-edge';
 import Buttons from './Buttons';
 import ConnectionLine from './ConnectionLine';
-
-import { PathFindingEdge } from '@tisoap/react-flow-smart-edge';
 
 import './App.css';
 import { strings } from './Locales';
@@ -108,6 +107,10 @@ const nodeTypes = {
   special: CustomNodeComponent,
 };
 
+const edgeTypes = {
+  smart: SmartEdge,
+};
+
 const GraphMaker = () => {
   const [rfInstance, setRfInstance] = useState<OnLoadParams>();
   const [elements, setElements] = useState<Elements>(initialElements);
@@ -190,8 +193,8 @@ const GraphMaker = () => {
         onEdgeUpdate={onEdgeUpdate}
         style={{ height: '100vh' }}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
         connectionLineComponent={ConnectionLine}
-        smart={PathFindingEdge}
       >
         <Controls />
         <Buttons rfInstance={rfInstance} setElements={setElements} />
