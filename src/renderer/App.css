@@ -60,7 +60,7 @@ input[type='color'] {
 
 /*.smalltalk button[data-name="js-cancel"],*/
 .smalltalk div[data-name='js-close'] {
-  display: none;
+  display: none !important;
 }
 
 .save__controls {
@@ -80,7 +80,7 @@ input[type='color'] {
 }
 
 .react-flow__controls-interactive {
-  display: none;
+  display: none !important;
 }
 
 .smalltalk .page {
@@ -92,7 +92,7 @@ input[type='color'] {
 @media print {
   .react-flow__controls,
   .save__controls {
-    display: none;
+    display: none !important;
   }
   body {
     background: transparent !important;

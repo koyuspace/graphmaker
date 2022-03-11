@@ -99,7 +99,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
     <div className="save__controls">
       <button onClick={onSave}>{strings.save}</button>
       <button onClick={onOpen}>{strings.open}</button>
-      <button onClick={window.print}>{strings.print}</button>
+      {/* <button onClick={window.print}>{strings.print}</button> */}
       <button onClick={onAdd}>{strings.addNode}</button>
       <div id="flowdata" style={{ display: 'none' }} />
     </div>
