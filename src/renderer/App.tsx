@@ -18,12 +18,12 @@ import ReactFlow, {
 import smalltalk from 'smalltalk';
 
 import { SmartEdge } from '@tisoap/react-flow-smart-edge';
+import { ipcRenderer } from 'electron';
 import Buttons from './Buttons';
 import ConnectionLine from './ConnectionLine';
 
 import './App.css';
 import { strings } from './Locales';
-import { ipcRenderer } from 'electron/renderer';
 
 const initialElements: Elements = [];
 
