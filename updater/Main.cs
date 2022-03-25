@@ -26,14 +26,14 @@ namespace graphmakerupdate
       }
       catch
       {
-        if (!File.Exists("GraphMaker.exe"))
+        if (!File.Exists("Application.exe"))
         {
           this.Close();
           MessageBox.Show(Properties.strings.errortext, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
         {
-          Process.Start("GraphMaker.exe");
+          Process.Start("Application.exe");
           this.Close();
         }
       }
@@ -66,22 +66,26 @@ namespace graphmakerupdate
             label1.Text = Properties.strings.extract;
             ZipFile.ExtractToDirectory("release.zip", Directory.GetCurrentDirectory());
             File.Delete("release.zip");
-            Process.Start("GraphMaker.exe");
+            Process.Start("Application.exe");
             this.Close();
           };
           webClient.DownloadFileAsync(new Uri("https://updates.koyu.space/graphmaker/release.zip"), "release.zip");
+        } else
+        {
+          Process.Start("Application.exe");
+          this.Close();
         }
       }
       catch
       {
-        if (!File.Exists("GraphMaker.exe"))
+        if (!File.Exists("Application.exe"))
         {
           this.Close();
           MessageBox.Show(Properties.strings.errortext, Properties.strings.error, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
         {
-          Process.Start("GraphMaker.exe");
+          Process.Start("Application.exe");
           this.Close();
         }
       }
