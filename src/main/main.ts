@@ -9,9 +9,7 @@
  * `./src/main.js` using webpack. This gives us some performance wins.
  */
 import path from 'path';
-import { app, BrowserWindow, shell, dialog, nativeTheme } from 'electron';
-import { autoUpdater } from 'electron-updater';
-import log from 'electron-log';
+import { app, BrowserWindow, shell, dialog } from 'electron';
 import { resolveHtmlPath } from './util';
 
 const fs = require('fs');
@@ -73,7 +71,6 @@ const createWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
   mainWindow.on('ready-to-show', () => {
-    autoUpdater.checkForUpdatesAndNotify();
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -156,15 +153,4 @@ ipc.on('run-open-dialog', function (event, arg) {
       mainWindow.webContents.send('restore-flow', data);
     });
   });
-});
-
-autoUpdater.on('update-available', () => {
-  mainWindow.webContents.send('update_available');
-});
-autoUpdater.on('update-downloaded', () => {
-  mainWindow.webContents.send('update_downloaded');
-});
-
-ipc.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
 });
