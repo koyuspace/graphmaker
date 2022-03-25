@@ -73,6 +73,7 @@ const createWindow = async () => {
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
   mainWindow.on('ready-to-show', () => {
+    autoUpdater.checkForUpdatesAndNotify();
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
@@ -155,4 +156,15 @@ ipc.on('run-open-dialog', function (event, arg) {
       mainWindow.webContents.send('restore-flow', data);
     });
   });
+});
+
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
 });
