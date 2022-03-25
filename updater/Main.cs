@@ -48,10 +48,12 @@ namespace graphmakerupdate
         if (version == 0 || latest != version)
         {
           progressBar1.Style = ProgressBarStyle.Blocks;
+#pragma warning disable SYSLIB0014 // Typ oder Element ist veraltet
           WebClient webClient = new WebClient();
+#pragma warning restore SYSLIB0014 // Typ oder Element ist veraltet
           webClient.DownloadProgressChanged += (s, e) =>
           {
-            label1.Text = Properties.strings.download+" ("+e.ProgressPercentage+")";
+            label1.Text = Properties.strings.download + " (" + e.ProgressPercentage + "%)";
             progressBar1.Value = e.ProgressPercentage;
           };
           webClient.DownloadFileCompleted += (s, e) =>
@@ -70,7 +72,8 @@ namespace graphmakerupdate
           webClient.DownloadFileAsync(new Uri("https://updates.koyu.space/graphmaker/release.zip"), "release.zip");
         }
       }
-      catch {
+      catch
+      {
         if (!File.Exists("GraphMaker.exe"))
         {
           this.Close();
