@@ -18,11 +18,18 @@ import ReactFlow, {
 import smalltalk from 'smalltalk';
 
 import { SmartEdge } from '@tisoap/react-flow-smart-edge';
+import $ from 'jquery';
 import Buttons from './Buttons';
 import ConnectionLine from './ConnectionLine';
 
 import './App.css';
 import { strings } from './Locales';
+
+import icon from '../../assets/icon.png';
+
+window.setInterval(function() {
+  $('.appicon').attr('src', icon);
+});
 
 const initialElements: Elements = [];
 

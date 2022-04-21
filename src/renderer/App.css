@@ -12,6 +12,15 @@ body {
     color: #fff;
     border: 1px solid #eee !important;
   }
+  .light {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .dark {
+    display: none;
+  }
 }
 
 button,
@@ -102,4 +111,16 @@ input[type='color'] {
 
 .js-input-shapes label {
   background: transparent !important;
+}
+
+.smalltalk .page .content-area {
+  text-align: center;
+}
+
+.smalltalk .page .content-area img {
+  margin: 0 auto;
+}
+
+.appicon {
+  vertical-align: middle;
 }

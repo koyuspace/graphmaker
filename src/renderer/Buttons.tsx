@@ -90,6 +90,14 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
     }
   };
 
+  const onAbout = useCallback(() => {
+    smalltalk.alert('', strings.abouttext, '', {
+      buttons: {
+        ok: strings.ok,
+      },
+    });
+  }, [setElements]);
+
   const onAdd = useCallback(() => {
     smalltalk
       .prompt('', strings.nodeValue, '', {
@@ -136,6 +144,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
       <button onClick={onOpen}>{strings.open}</button>
       {/* <button onClick={window.print}>{strings.print}</button> */}
       <button onClick={onAdd}>{strings.addNode}</button>
+      <button onClick={onAbout}>{strings.about}</button>
       <div id="flowdata" style={{ display: 'none' }} />
     </div>
   );
