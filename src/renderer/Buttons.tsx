@@ -16,7 +16,9 @@ import $ from 'jquery';
 import smalltalk from 'smalltalk';
 import { strings } from './Locales';
 
+import plock from '../../release/app/package.json';
 const electron = require('electron');
+
 // eslint-disable-next-line prefer-destructuring
 const ipc = electron.ipcRenderer;
 
@@ -91,11 +93,16 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   };
 
   const onAbout = useCallback(() => {
-    smalltalk.alert('', strings.abouttext, '', {
-      buttons: {
-        ok: strings.ok,
-      },
-    });
+    smalltalk.alert(
+      '',
+      strings.abouttext.replaceAll('%%version%%', plock.version),
+      '',
+      {
+        buttons: {
+          ok: strings.ok,
+        },
+      }
+    );
   }, [setElements]);
 
   const onAdd = useCallback(() => {
