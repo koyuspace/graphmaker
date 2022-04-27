@@ -48,9 +48,9 @@ namespace graphmakerupdate
         if (version == 0 || latest != version)
         {
           progressBar1.Style = ProgressBarStyle.Blocks;
-#pragma warning disable SYSLIB0014 // Typ oder Element ist veraltet
+#pragma warning disable SYSLIB0014
           WebClient webClient = new WebClient();
-#pragma warning restore SYSLIB0014 // Typ oder Element ist veraltet
+#pragma warning restore SYSLIB0014
           webClient.DownloadProgressChanged += (s, e) =>
           {
             label1.Text = Properties.strings.download + " (" + e.ProgressPercentage + "%)";
@@ -64,7 +64,7 @@ namespace graphmakerupdate
             progressBar1.Value = 0;
             progressBar1.Style = ProgressBarStyle.Marquee;
             label1.Text = Properties.strings.extract;
-            ZipFile.ExtractToDirectory("release.zip", Directory.GetCurrentDirectory());
+            ZipArchiveExtensions.ExtractToDirectory("release.zip", Directory.GetCurrentDirectory(), true);
             File.Delete("release.zip");
             Process.Start("Application.exe");
             this.Close();
