@@ -63,11 +63,11 @@ const CustomNodeComponent = ({ data }) => {
       />
       <div
         style={{
-          width: '100px',
+          width: '200px',
           height: '42px',
           textAlign: 'center',
           fontWeight: 'bold',
-          fontSize: '24pt',
+          fontSize: '18pt',
           verticalAlign: 'middle',
           fontFamily: 'Arial',
         }}
