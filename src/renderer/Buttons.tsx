@@ -16,7 +16,6 @@ import $ from 'jquery';
 import smalltalk from 'smalltalk';
 import { strings } from './Locales';
 
-import plock from '../../release/app/package.json';
 const electron = require('electron');
 
 // eslint-disable-next-line prefer-destructuring
@@ -95,7 +94,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   const onAbout = useCallback(() => {
     smalltalk.alert(
       '',
-      strings.abouttext.replaceAll('%%version%%', plock.version),
+      strings.abouttext.replaceAll('%%version%%', "1.1.0"),
       '',
       {
         buttons: {
