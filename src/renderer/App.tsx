@@ -70,6 +70,7 @@ const CustomNodeComponent = ({ data }) => {
           fontSize: '18pt',
           verticalAlign: 'middle',
           fontFamily: 'Arial',
+          wordWrap: 'break-word',
         }}
       >
         {data.label}
