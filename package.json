@@ -48,7 +48,7 @@
     },
     "linux": {
       "target": [
-        "appimage"
+        "AppImage"
       ],
       "category": "Office"
     },
