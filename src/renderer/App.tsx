@@ -45,7 +45,7 @@ const CustomNodeComponent = ({ data }) => {
           borderRadius: '50%',
           height: '22px',
           width: '22px',
-          backgroundColor: '#027abf',
+          backgroundColor: '#3867d6',
         }}
       />
       <Handle
@@ -58,7 +58,7 @@ const CustomNodeComponent = ({ data }) => {
           height: '22px',
           width: '22px',
           color: 'blue',
-          backgroundColor: '#027abf',
+          backgroundColor: '#3867d6',
         }}
       />
       <div
@@ -85,7 +85,7 @@ const CustomNodeComponent = ({ data }) => {
           borderRadius: 0,
           height: '22px',
           width: '22px',
-          backgroundColor: '#ffe300',
+          backgroundColor: '#f7b731',
         }}
       />
       <Handle
@@ -97,7 +97,7 @@ const CustomNodeComponent = ({ data }) => {
           borderRadius: 0,
           height: '22px',
           width: '22px',
-          backgroundColor: '#ffe300',
+          backgroundColor: '#f7b731',
         }}
       />
     </div>
@@ -119,18 +119,18 @@ const GraphMaker = () => {
     setElements((els) => removeElements(elementsToRemove, els));
   const convertShapes = (shape) => {
     if (shape === 'x') {
-      return { text: 'X', color: '#0000ff' };
+      return { text: 'X', color: '#3867d6' };
       // eslint-disable-next-line no-else-return
     } else if (shape === 'l') {
-      return { text: 'L', color: '#ff00ff' };
+      return { text: 'L', color: '#0fb9b1' };
     } else if (shape === 'y') {
-      return { text: 'Y', color: '#ffff00' };
+      return { text: 'Y', color: '#f7b731' };
     } else if (shape === 'triangle') {
-      return { text: '▲', color: '#8000ff' };
+      return { text: '▲', color: '#8854d0' };
     } else if (shape === 'square') {
-      return { text: '◼', color: '#00ff00' };
+      return { text: '◼', color: '#26de81' };
     } else if (shape === 'circle') {
-      return { text: '●', color: '#ff0000' };
+      return { text: '●', color: '#eb3b5a' };
     } else {
       return { text: '', color: '#fff' };
     }
@@ -156,7 +156,7 @@ const GraphMaker = () => {
                 {
                   ...params,
                   animated: true,
-                  label: `${convertShapes(val1).text} ${val3}`,
+                  label: `${val3}`,
                   labelStyle: {
                     fontSize: '18pt',
                     fontWeight: 'bold',

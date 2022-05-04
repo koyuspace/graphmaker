@@ -8167,7 +8167,7 @@ slice-ansi@^5.0.0:
 
 "smalltalk@https://github.com/koyuspace/smalltalk":
   version "4.0.7"
-  resolved "https://github.com/koyuspace/smalltalk#fca9e75cfd106b759559ad1535023bbde064f00a"
+  resolved "https://github.com/koyuspace/smalltalk#eb25c4ffd86f2e2e37d5242faa752499780dcae1"
   dependencies:
     "@cloudcmd/create-element" "^2.0.0"
     currify "^4.0.0"

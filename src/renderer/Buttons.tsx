@@ -74,18 +74,18 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
 
   const convertShapes = (shape) => {
     if (shape === 'x') {
-      return { text: 'X', color: '#0000ff' };
+      return { text: 'X', color: '#3867d6' };
       // eslint-disable-next-line no-else-return
     } else if (shape === 'l') {
-      return { text: 'L', color: '#ff00ff' };
+      return { text: 'L', color: '#0fb9b1' };
     } else if (shape === 'y') {
-      return { text: 'Y', color: '#ffff00' };
+      return { text: 'Y', color: '#f7b731' };
     } else if (shape === 'triangle') {
-      return { text: '▲', color: '#8000ff' };
+      return { text: '▲', color: '#8854d0' };
     } else if (shape === 'square') {
-      return { text: '◼', color: '#00ff00' };
+      return { text: '◼', color: '#26de81' };
     } else if (shape === 'circle') {
-      return { text: '●', color: '#ff0000' };
+      return { text: '●', color: '#eb3b5a' };
     } else {
       return { text: '', color: '#fff' };
     }
@@ -94,7 +94,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   const onAbout = useCallback(() => {
     smalltalk.alert(
       '',
-      strings.abouttext.replaceAll('%%version%%', "1.1.1"),
+      strings.abouttext.replaceAll('%%version%%', '1.2.0'),
       '',
       {
         buttons: {
