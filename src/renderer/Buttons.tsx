@@ -94,7 +94,7 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   const onAbout = useCallback(() => {
     smalltalk.alert(
       '',
-      strings.abouttext.replaceAll('%%version%%', '1.2.0'),
+      strings.abouttext.replaceAll('%%version%%', '1.2.1'),
       '',
       {
         buttons: {
