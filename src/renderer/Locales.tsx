@@ -19,6 +19,8 @@ export const strings = new LocalizedStrings({
     about: 'About',
     abouttext:
       '<img class="appicon" height="32"><b>GraphMaker %%version%%</b>\n\nSource code: <a href="https://github.com/koyuspace/graphmaker" target="_blank">https://github.com/koyuspace/graphmaker</a>\nSupport: <a href="mailto:support@koyu.space">support@koyu.space</a>\n\n&copy; 2022 koyu.space. Licensed under the MIT license.\n\n<img src="https://koyu.space/img/pb-icon.svg" class="dark" height="32"><img src="https://koyu.space/img/logo-full.svg" class="light" height="32">',
+    abouttext_edeka:
+      '<img class="appicon" height="32"><b>GraphMaker %%version%%</b>\n\nSource code: <a href="https://github.com/koyuspace/graphmaker" target="_blank">https://github.com/koyuspace/graphmaker</a>\n\n&copy; 2022 koyu.space. Licensed under the MIT license.\n\n<img src=""https://www.edeka.de/edeka-ui-assets/images/logo.png" height="32">',
   },
   de: {
     ok: 'Ok',
@@ -37,5 +39,7 @@ export const strings = new LocalizedStrings({
     about: 'Über',
     abouttext:
       '<img class="appicon" height="32"><b>GraphMaker %%version%%</b>\n\nQuellcode: <a href="https://github.com/koyuspace/graphmaker" target="_blank">https://github.com/koyuspace/graphmaker</a>\nSupport: <a href="mailto:support@koyu.space">support@koyu.space</a>\n\n&copy; 2022 koyu.space. Lizensiert unter der MIT-Lizenz.\n\n<img src="https://koyu.space/img/pb-icon.svg" class="dark" height="32"><img src="https://koyu.space/img/logo-full.svg" class="light" height="32">',
+    abouttext_edeka:
+      '<img class="appicon" height="32"><b>GraphMaker %%version%%</b>\n\nQuellcode: <a href="https://github.com/koyuspace/graphmaker" target="_blank">https://github.com/koyuspace/graphmaker</a>\n\n&copy; 2022 koyu.space. Lizensiert unter der MIT-Lizenz.\n\n<img src="https://www.edeka.de/edeka-ui-assets/images/logo.png" height="32">',
   },
 });

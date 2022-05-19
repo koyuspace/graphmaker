@@ -1,3 +1,5 @@
+/* eslint-disable prefer-destructuring */
+/* eslint-disable no-lone-blocks */
 /* eslint-disable promise/no-nesting */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -17,6 +19,17 @@ import smalltalk from 'smalltalk';
 import { strings } from './Locales';
 
 const electron = require('electron');
+
+let isEdeka = false;
+fetch(
+  'http://wso2no-lb01.nord-gh.edekanet.de:8380/express_gateway/alm/markets/getLunarStatus?_=1652952720487'
+)
+  .then(() => {
+    {
+      isEdeka = true;
+    }
+  })
+  .catch(() => {});
 
 // eslint-disable-next-line prefer-destructuring
 const ipc = electron.ipcRenderer;
@@ -92,16 +105,15 @@ const Buttons: FC<ButtonsProps> = ({ rfInstance, setElements }) => {
   };
 
   const onAbout = useCallback(() => {
-    smalltalk.alert(
-      '',
-      strings.abouttext.replaceAll('%%version%%', '1.2.1'),
-      '',
-      {
-        buttons: {
-          ok: strings.ok,
-        },
-      }
-    );
+    let abouttext = strings.abouttext;
+    if (isEdeka) {
+      abouttext = strings.abouttext_edeka;
+    }
+    smalltalk.alert('', abouttext.replaceAll('%%version%%', '1.2.2'), '', {
+      buttons: {
+        ok: strings.ok,
+      },
+    });
   }, [setElements]);
 
   const onAdd = useCallback(() => {
